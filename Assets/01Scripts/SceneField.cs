@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,13 +10,13 @@ using UnityEditor;
 public class SceneField
 {
     [SerializeField] private Object sceneAsset;
-    [SerializeField] private string sceneName = "";
+    [SerializeField] private string _sceneName = "";
     
-    public string SceneName {get{return sceneName;}}
+    public string SceneName {get{return _sceneName;}}
 
     public static implicit operator string(SceneField sceneField)
     {
-        return sceneField.sceneName;
+        return sceneField._sceneName;
     }
 }
 

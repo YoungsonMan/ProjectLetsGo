@@ -26,7 +26,15 @@ public class SceneChanger : MonoBehaviour
     }
     void Start()
     {
-        
+        InitGameScene();
+    }
+
+    public void InitGameScene()
+    {
+        AsyncOperation playerSceneOperation = SceneManager.LoadSceneAsync(playerScene);
+        playerSceneOperation.allowSceneActivation = true;
+        AsyncOperation firstStageOperation = SceneManager.LoadSceneAsync(firstStage, LoadSceneMode.Additive);
+        firstStageOperation.allowSceneActivation = true;
     }
     
     /// <summary>
