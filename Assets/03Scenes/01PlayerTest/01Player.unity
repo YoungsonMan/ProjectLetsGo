@@ -718,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1582047238, guid: 74635f9578fee564faf45da84ef7cfdd, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 6610548483783124352, guid: 74635f9578fee564faf45da84ef7cfdd,
         type: 3}
@@ -819,6 +819,22 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6610548482136147219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610548482136147217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72cf3475a0295245809a1bbb7e819be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerView: {fileID: 0}
+  _hp: 0
+  _mp: 0
+  speed: 5
 --- !u!1001 &6819448236784089203
 PrefabInstance:
   m_ObjectHideFlags: 0

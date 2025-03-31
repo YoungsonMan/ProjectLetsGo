@@ -10,7 +10,10 @@ public class PlayerModel : MonoBehaviour
     [SerializeField] private int _hp;
     [SerializeField] private int _mp;
     
+    
+    // 일단 직렬화로
     // speed
+    [SerializeField] public float speed;
     // power
     // defense
     

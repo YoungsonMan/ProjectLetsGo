@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public PlayerModel playerModel;
+    [SerializeField] public PlayerModel playerModel; // 인스펙터 확인용 TODO: 추후 삭제
     [SerializeField] public PlayerView playerView;
 
     [SerializeField] private Rigidbody _rigidBody;
     [SerializeField] private Animator _animator;
 
     private Vector3 _moveDirection;
-   
+    private PlayerModel _playerModel;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+        _playerModel = GetComponent<PlayerModel>();
         
     }
 
@@ -36,39 +36,6 @@ public class PlayerController : MonoBehaviour
     {
        // Move();
     }
-
-    public void OnMove(InputValue value)
-    {
-        Vector2 input = value.Get<Vector2>();
-        
-        _moveDirection = new Vector3(input.x, 0, input.y).normalized;
-        //    new Vector2(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        // TODO: Animation 뷰에서 세팅해주기? 
-        
-        // 계속움직임 방지
-        if (_moveDirection.magnitude < 0.1f)
-        {
-            _rigidBody.velocity = Vector2.zero;
-        }
-        
-        // 동시 입력시 다른 방향으로 움직임 제한
-        // if (move.x != 0) move.z = 0;
-        // if (move.z != 0) move.x = 0;
-        
-        // RigidBody로 이동
-        _rigidBody.velocity = _moveDirection.normalized; // 추후에 능력치 대로 움직이도록.
-        
-        // 마지막 방향 유지
-        if(_moveDirection.magnitude > 0.1f) transform.forward = _moveDirection.normalized;
-        
-    }
-
-    public void OnDodge(InputValue value)
-    {
-        
-    }
-
-    
     public void Move()
     {
         Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -91,4 +58,30 @@ public class PlayerController : MonoBehaviour
         if(move.magnitude > 0.1f) transform.forward = move.normalized;
 
     }
+    public void OnMove(InputValue value)
+    {
+        Vector2 input = value.Get<Vector2>();
+        
+        _moveDirection = new Vector3(input.x, 0, input.y).normalized;
+        // TODO: Animation View 세팅 
+        
+        // 계속움직임 방지
+        if (_moveDirection.magnitude < 0.1f)
+        {
+            _rigidBody.velocity = Vector2.zero;
+        }
+        // RigidBody로 이동
+        _rigidBody.velocity = _moveDirection.normalized * _playerModel.speed; // 추후에 능력치 대로 움직이도록.
+        // 마지막 방향 유지
+        if(_moveDirection.magnitude > 0.1f) transform.forward = _moveDirection.normalized;
+        
+    }
+
+    public void OnDodge(InputValue value)
+    {
+        
+    }
+
+    
+
 }
