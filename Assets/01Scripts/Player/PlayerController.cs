@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
+        
+        _states[(int)State.Idle].Enter();
     }
 
     // Update is called once per frame
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour
         // Debug.Log( $"방향키입력받음. moveDir: {_moveDirection},  inputMagnitude: {input.magnitude}");
         // TODO: Animation View 세팅 
         
+        ChangeState(State.Walk);
         
     }
     public void Move()
