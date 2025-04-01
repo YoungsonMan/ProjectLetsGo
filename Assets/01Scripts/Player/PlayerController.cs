@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         
         _rigidBody.velocity = _moveDirection.normalized * _playerModel.speed; 
-        Debug.Log( $"방향키입력받음. moveDir: {_moveDirection},  inputMagnitude: {_moveDirection.magnitude}");
+        //Debug.Log( $"방향키입력받음. moveDir: {_moveDirection},  inputMagnitude: {_moveDirection.magnitude}");
         // 계속움직임 방지
         if (_moveDirection.magnitude < 0.1f)
         {
