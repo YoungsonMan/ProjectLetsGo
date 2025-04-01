@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum State {Idle, Walk, Run, Dodge, Hit, Attack, Skill1, Skill2, Skill3, Ult, Size }
+    public enum State {Idle, Walk, Run, Dodge, Hit, Attack, Skill1, Skill2, Skill3, Ult, Dead, Size }
     [SerializeField] private State _currentState;
     PlayerState[] _states = new PlayerState[(int)State.Size];
     
@@ -41,9 +41,18 @@ public class PlayerController : MonoBehaviour
         }
         _playerModel = GetComponent<PlayerModel>();
         
-        // 상태 해싱
-        // _states[(int)State.Idle] = new IdleState(this);
-
+        // 상태 넘버링
+         _states[(int)State.Idle] = new IdleState(this);
+         _states[(int)State.Walk] = new WalkState(this);
+         _states[(int)State.Run] = new RunState(this);
+         _states[(int)State.Dodge] = new DodgeState(this);
+         _states[(int)State.Hit] = new HitState(this);
+         _states[(int)State.Attack] = new AttackState(this);
+         _states[(int)State.Skill1] = new Skill1State(this);
+         _states[(int)State.Skill2] = new Skill2State(this);
+         _states[(int)State.Skill3] = new Skill3State(this);
+         _states[(int)State.Ult] = new UltState(this);
+         _states[(int)State.Dead] = new DeadState(this);
     }
 
     void Start()

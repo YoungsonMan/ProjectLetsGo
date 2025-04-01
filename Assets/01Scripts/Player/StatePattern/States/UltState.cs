@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UltState : MonoBehaviour
+public class UltState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public UltState(PlayerController playerController) : base(playerController)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
+    {
+        
+    }
+    public override void Update()
+    {
+        
+    }
+    public override void Exit()
     {
         
     }

@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkState : MonoBehaviour
+public class WalkState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public WalkState(PlayerController playerController) : base(playerController)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
+    {
+        
+    }
+    public override void Update()
+    {
+        
+    }
+    public override void Exit()
     {
         
     }

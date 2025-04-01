@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill2State : MonoBehaviour
+public class Skill2State : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public Skill2State(PlayerController playerController) : base(playerController)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
+    {
+        
+    }
+    public override void Update()
+    {
+        
+    }
+    public override void Exit()
     {
         
     }
