@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     {
        Move();
        
+       _states[(int)_currentState].Update();
+       
     }
     
     public void OnMove(InputValue value)
