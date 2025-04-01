@@ -182,6 +182,28 @@
                 },
                 {
                     "name": "",
+                    "id": "364e359e-2711-43e2-977f-18f405079cb5",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9644eb3d-da8f-4672-a6a1-0e9ae4a1192d",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6b5abea9-85e5-4806-9d42-f76ba95b3da9",
                     "path": "<Keyboard>/space",
                     "interactions": "",

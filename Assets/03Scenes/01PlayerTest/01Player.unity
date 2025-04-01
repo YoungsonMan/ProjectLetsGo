@@ -718,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1582047238, guid: 74635f9578fee564faf45da84ef7cfdd, type: 3}
       propertyPath: m_Constraints
-      value: 118
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 6610548483783124352, guid: 74635f9578fee564faf45da84ef7cfdd,
         type: 3}
@@ -813,7 +813,47 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6610548482136147220}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f06e4f53-4b92-4fd0-b843-b3b0bfed3459
+    m_ActionName: PlayerActions/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9faf09a7-255a-495e-a384-e5bf49991e59
+    m_ActionName: PlayerActions/Dodge[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d789c306-9f2f-4f85-a570-b913f4196944
+    m_ActionName: PlayerActions/Attack[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bead4570-ed37-4da3-9cde-f6e829ce7849
+    m_ActionName: PlayerActions/Skill1[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbf8ba9d-c14e-46c9-9946-cbb9a8fb1dc9
+    m_ActionName: PlayerActions/Skill2[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68c29d9c-0bd4-4c20-a019-28a47806bf40
+    m_ActionName: PlayerActions/Skill3[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aa5e9694-13a4-49e1-b793-458e9f745882
+    m_ActionName: PlayerActions/Ultimate[/Keyboard/g]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: PlayerActions
@@ -835,6 +875,18 @@ MonoBehaviour:
   _hp: 0
   _mp: 0
   speed: 5
+--- !u!114 &6610548482136147220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1582047234, guid: 74635f9578fee564faf45da84ef7cfdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 6610548482136147216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610548482136147217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae4be00e0c945e4abeaea46ffc41a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6819448236784089203
 PrefabInstance:
   m_ObjectHideFlags: 0
