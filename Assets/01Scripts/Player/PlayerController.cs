@@ -1,12 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum State {Idle, Walk, Run, Dodge, Hit, Attack, Skill1, Skill2, Skill3, Ult, Size }
+    [SerializeField] private State _currentState;
+    PlayerState[] _states = new PlayerState[(int)State.Size];
+    
     [SerializeField] public PlayerModel playerModel; // 인스펙터 확인용 TODO: 추후 삭제
     [SerializeField] public PlayerView playerView;
 
@@ -17,6 +22,17 @@ public class PlayerController : MonoBehaviour
     private PlayerModel _playerModel;
     private PlayerView _playerView;
 
+    /// <summary>
+    ///  상태변화 다음상태받고 지금상태 Exit()을 실행 => 다음상태 Enter()실행...
+    /// </summary>
+    /// <param name="nextState"></param>
+    public void ChangeState(State nextState)
+    {
+        _states[(int)_currentState].Exit();
+        _currentState = nextState;
+        _states[(int)_currentState].Enter();
+    }
+
     private void Awake()
     {
         if (FindObjectsOfType<PlayerController>().Length != 1)
@@ -25,6 +41,9 @@ public class PlayerController : MonoBehaviour
         }
         _playerModel = GetComponent<PlayerModel>();
         
+        // 상태 해싱
+        // _states[(int)State.Idle] = new IdleState(this);
+
     }
 
     void Start()
@@ -63,7 +82,8 @@ public class PlayerController : MonoBehaviour
         }
         // 마지막 방향 유지
         // transform.forward = _moveDirection.normalized;
-        if(_moveDirection.magnitude > 1f) transform.forward = _moveDirection.normalized;
+        if(_moveDirection.magnitude > 1f) transform.forward = _moveDirection;
+        // if (_moveDirection.magnitude > 0.2f) transform.forward = _moveDirection;
         
         // 0,0,0
         
