@@ -59,8 +59,6 @@ public class PlayerController : MonoBehaviour
         {
             _rigidBody.velocity = Vector2.zero;
         }
-        // RigidBody로 이동
-        _rigidBody.velocity = _moveDirection.normalized; // 추후에 능력치 대로 움직이도록.
         // 마지막 방향 유지
         if(_moveDirection.magnitude > 0.1f) transform.forward = _moveDirection.normalized;
 
