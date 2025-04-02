@@ -15,11 +15,11 @@ public class WalkState : PlayerState
     }
     public override void Update()
     {
-        playerController.animator.Play("Run");
+        playerController.animator.SetBool("Walk",true);
         // Debug.Log("Walk State");
     }
     public override void Exit()
     {
-        
+        playerController.animator.SetBool("Walk",false);
     }
 }

@@ -21,6 +21,6 @@ public class IdleState : PlayerState
     }
     public override void Exit()
     {
-        
+        playerController.animator.SetBool("Idle",false);
     }
 }

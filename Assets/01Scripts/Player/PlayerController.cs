@@ -85,9 +85,8 @@ public class PlayerController : MonoBehaviour
        
        _states[(int)_currentState].Update();
        
-       
-       /// ComboAttack();
-       // Combo관련
+       /* Combo관련
+       // ComboAttack();
     //   if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
     //   {
     //       _animator.SetBool(Attack1, false);
@@ -110,6 +109,7 @@ public class PlayerController : MonoBehaviour
     //      // OnAttack();
     //       Debug.Log("공격");
     //   }
+       */
        
     }
     
@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
         if (_moveDirection.magnitude < 0.1f)
         {
             _rigidBody.velocity = Vector2.zero;
+            ChangeState(State.Idle);
         }
         // 마지막 방향 유지
         // transform.forward = _moveDirection.normalized;
