@@ -198,8 +198,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.16899383, y: -0.0014860108, z: 0.00024284843, w: -0.98561597}
+  m_LocalPosition: {x: -0.83165085, y: 1.8164394, z: -2.5901833}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -504,16 +504,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046638087953064508, guid: ddbb2f2522c3da14ebeeb59b0a3f7c00,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 4771685286047126311, guid: ddbb2f2522c3da14ebeeb59b0a3f7c00,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddbb2f2522c3da14ebeeb59b0a3f7c00, type: 3}
