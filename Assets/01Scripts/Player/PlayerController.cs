@@ -6,6 +6,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private PlayerView _playerView;
 
 
-    [SerializeField] private Animator _animator;
+    [SerializeField] public Animator animator;
     // Combo Attack 관련
     public float cooldownTime = 2f;
     private float _nextFireTime = 0f;
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         _states[(int)State.Idle].Enter();
     }
 
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
        _states[(int)_currentState].Update();
        
        
-       ComboAttack();
+       /// ComboAttack();
        // Combo관련
     //   if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
     //   {
@@ -100,11 +101,14 @@ public class PlayerController : MonoBehaviour
     //       _animator.SetBool(Attack3, false);
     //       numOfClicks = 0;
     //   }
-    //
+    //   if (Time.time - _lastClickedTime > _maxComboDelay)
+    //   {
+    //       numOfClicks = 0;
+    //   }
     //   if (Time.time > _nextFireTime)
     //   {
-    //     //  OnAttack();
-    //     //  Debug.Log("공격");
+    //      // OnAttack();
+    //       Debug.Log("공격");
     //   }
        
     }
@@ -140,30 +144,31 @@ public class PlayerController : MonoBehaviour
 
     public void ComboAttack()
     {
-        _lastClickedTime = Time.time;
-        numOfClicks++;
-        if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
         {
-            _animator.SetBool(Attack1, false);
+            animator.SetBool(Attack1, false);
         }
-        if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && animator.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
         {
-            _animator.SetBool(Attack2, false);
+            animator.SetBool(Attack2, false);
         }
-        if(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _animator.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && animator.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
         {
-            _animator.SetBool(Attack3, false);
+            animator.SetBool(Attack3, false);
             numOfClicks = 0;
         }
-
         if (Time.time - _lastClickedTime > _maxComboDelay)
         {
             numOfClicks = 0;
         }
         if (Time.time > _nextFireTime)
         {
-            OnAttack();
-            //  Debug.Log("공격");
+           // if (Input.GetKeyDown(KeyCode.Z))
+           // {
+           //   OnAttack();
+           //   Debug.Log("공격");
+           //    
+           // }
         }
     }
 
@@ -172,30 +177,28 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("inputAction 공격");
         _lastClickedTime = Time.time;
         numOfClicks++;
+
         if (numOfClicks == 1)
-        {
-            _animator.SetBool(Attack1, true);
-            Debug.Log("콤보1");
-        }
-        numOfClicks = Mathf.Clamp(numOfClicks, 0, 3);
-        if (numOfClicks >= 2 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f &&
-            _animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
-        {
-            _animator.SetBool(Attack1, false);
-            _animator.SetBool(Attack2, true);
-            Debug.Log("콤보2");
-        }
-        if (numOfClicks >= 3 && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f &&
-            _animator.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
-        {
-            _animator.SetBool(Attack2, false);
-            _animator.SetBool(Attack3, true);
-            Debug.Log("콤보3");
-        }
-        
-        
-        
-        
+         {
+             animator.SetBool(Attack1, true);
+             Debug.Log("콤보1");
+         }
+         numOfClicks = Mathf.Clamp(numOfClicks, 0, 3);
+         if (numOfClicks >= 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f &&
+             animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+         {
+             animator.SetBool(Attack1, false);
+             animator.SetBool(Attack2, true);
+             Debug.Log("콤보2");
+         }
+         if (numOfClicks >= 3 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f &&
+             animator.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
+         {
+             animator.SetBool(Attack2, false);
+             animator.SetBool(Attack3, true);
+             Debug.Log("콤보3");
+         } 
+     
     }
 
 
