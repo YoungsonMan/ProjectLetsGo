@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
       // OnMove();
-       ComboAttack();
        _states[(int)_currentState].Update();
        
        
