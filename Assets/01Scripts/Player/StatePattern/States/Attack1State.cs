@@ -13,7 +13,6 @@ public class Attack1State : PlayerState
     {
 
         Debug.Log("Atack 111111 ");
-        // playerController.animator.SetBool("attack1",true);
         playerController.animator.SetTrigger("Attack1");
         
         

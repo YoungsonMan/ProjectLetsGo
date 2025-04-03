@@ -11,7 +11,8 @@ public class Skill2State : PlayerState
 
     public override void Enter()
     {
-        
+        Debug.Log("스킬 22222222 ");
+        playerController.animator.SetTrigger("Skill2");
     }
     public override void Update()
     {

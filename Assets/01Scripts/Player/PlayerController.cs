@@ -173,11 +173,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Skill1(InputAction.CallbackContext context)
     {
-        attackCount = 1;
+        ChangeState(State.Skill1);
     }
     public void Skill2(InputAction.CallbackContext context)
     {
-        attackCount = 2;
+        ChangeState(State.Skill2);
     }
     public void Skill3(InputAction.CallbackContext context)
     {
