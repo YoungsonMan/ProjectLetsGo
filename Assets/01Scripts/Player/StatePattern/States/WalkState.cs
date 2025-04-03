@@ -11,7 +11,7 @@ public class WalkState : PlayerState
 
     public override void Enter()
     {
-        
+      //  Debug.Log("Walk State Enter");
     }
     public override void Update()
     {
@@ -21,5 +21,6 @@ public class WalkState : PlayerState
     public override void Exit()
     {
         playerController.animator.SetBool("Walk",false);
+       // Debug.Log("Walk State Exit");
     }
 }
