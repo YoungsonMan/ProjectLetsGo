@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Rigidbody _rigidBody;
 
-    public InputAction playerControls;
+    //public InputAction playerControls;
     private Vector3 _moveDirection;
     private PlayerModel _playerModel;
     private PlayerView _playerView;
@@ -43,9 +43,14 @@ public class PlayerController : MonoBehaviour
     private float _lastClickedTime = 0;
     private float _maxComboDelay = 1;
     
-    private static readonly int Attack1 = Animator.StringToHash("attack1");
-    private static readonly int Attack2 = Animator.StringToHash("attack2");
-    private static readonly int Attack3 = Animator.StringToHash("attack3");
+
+    private int hashAttackCount = Animator.StringToHash("AttackCount");
+
+    public int attackCount
+    {
+        get => animator.GetInteger(hashAttackCount);
+        set => animator.SetInteger(hashAttackCount, (int)value);
+    }
 
     /// <summary>
     ///  상태변화 다음상태받고 지금상태 Exit()을 실행 => 다음상태 Enter()실행...
@@ -95,6 +100,17 @@ public class PlayerController : MonoBehaviour
         attackAction = playerInput.PlayerActions.Attack;
         attackAction.Enable();
         attackAction.performed += Attack;
+        
+        skill1Action = playerInput.PlayerActions.Skill1;
+        skill1Action.Enable();
+        skill1Action.performed += Skill1;
+        skill2Action = playerInput.PlayerActions.Skill2;
+        skill2Action.Enable();
+        skill2Action.performed += Skill2;
+        skill3Action = playerInput.PlayerActions.Skill3;
+        skill3Action.Enable();
+        skill3Action.performed += Skill3;
+        
     }
 
     private void OnDisable()
@@ -114,8 +130,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       OnMove();
-      // ComboAttack();
+      // OnMove();
+       ComboAttack();
        _states[(int)_currentState].Update();
        
        
@@ -147,103 +163,29 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Dodge키가 입력됐습니다.");
     }
-
-    public void ComboAttack()
-    {
-        bool isPressed = playerInput.PlayerActions.Attack.ReadValue<float>() > 0.1f;
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _currentState == State.Attack1)
-        {
-            animator.SetBool(Attack1, false);
-        }
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _currentState == State.Attack2)
-        {
-            animator.SetBool(Attack2, false);
-        }
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _currentState == State.Attack3)
-        {
-            animator.SetBool(Attack3, false);
-            numOfClicks = 0;
-        }
-        if (Time.time - _lastClickedTime > _maxComboDelay)
-        {
-            numOfClicks = 0;
-        }
-        if (Time.time > _nextFireTime)
-        {
-            //bool isPressed = playerInput.PlayerActions.Attack.ReadValue<float>() > 0.1f;
-            if (isPressed)
-            {
-              // Debug.Log("공격");
-              OnAttack();
-               
-            }
-        }
-    }
-
+    
     public void Attack(InputAction.CallbackContext context)
     {
-        Debug.Log("콜백이벤트 : 공격");
-        bool isPressed = playerInput.PlayerActions.Attack.ReadValue<float>() > 0.1f;
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _currentState == State.Attack1)
-        {
-            animator.SetBool(Attack1, false);
-        }
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _currentState == State.Attack2)
-        {
-            animator.SetBool(Attack2, false);
-        }
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .7f && _currentState == State.Attack3)
-        {
-            animator.SetBool(Attack3, false);
-            numOfClicks = 0;
-        }
-        if (Time.time - _lastClickedTime > _maxComboDelay)
-        {
-            numOfClicks = 0;
-        }
-        if (Time.time > _nextFireTime)
-        {
-            //bool isPressed = playerInput.PlayerActions.Attack.ReadValue<float>() > 0.1f;
-            if (isPressed)
-            {
-                Debug.Log("공격버튼 눌림 확인");
-                OnAttack();
-               
-            }
-        }
+
+      ChangeState(State.Attack1);
+      attackCount = 0;
+      
 
     }
-
-    public void OnAttack()
+    public void Skill1(InputAction.CallbackContext context)
     {
-        //Debug.Log("inputAction 공격");
-        _lastClickedTime = Time.time;
-        numOfClicks++;
-        if (numOfClicks == 1)
-         {
-             ChangeState(State.Attack1);
-             //animator.SetBool(Attack1, true);
-             
-         }
-         numOfClicks = Mathf.Clamp(numOfClicks, 0, 3);
-         if (numOfClicks >= 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .8f &&
-             animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
-         {
-             ChangeState(State.Attack2);
-            // animator.SetBool(Attack1, false);
-            // animator.SetBool(Attack2, true);
-            // Debug.Log("콤보2");
-         }
-         if (numOfClicks >= 3 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .8f &&
-             animator.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
-         {
-             ChangeState(State.Attack3);
-             // animator.SetBool(Attack2, false);
-             // animator.SetBool(Attack3, true);
-             // Debug.Log("콤보3");
-         } 
-     
+        attackCount = 1;
     }
+    public void Skill2(InputAction.CallbackContext context)
+    {
+        attackCount = 2;
+    }
+    public void Skill3(InputAction.CallbackContext context)
+    {
+        
+    }
+
+  
 
 
 }

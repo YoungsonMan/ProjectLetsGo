@@ -12,12 +12,13 @@ public class Attack2State : PlayerState
     public override void Enter()
     {
         Debug.Log("Atack 222222 ");
+        playerController.animator.SetTrigger("Attack2");
     }
     public override void Update()
     {
         Debug.Log("콤보 2 어택");
         //playerController.animator.SetBool("attack2",true);
-        playerController.animator.SetTrigger("Attack2");
+        
     }
     public override void Exit()
     {
