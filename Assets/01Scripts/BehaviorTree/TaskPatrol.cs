@@ -8,6 +8,8 @@ public class TaskPatrol : Node
 {
     private Transform _transform;
     private Transform[] _waypoints; 
+    // TODO: 애니메이터 추가해야함, 애니메이션 찾으면 활성화 시키기
+    // TODO - private Animator _animator;
     
     private int _currentWaypointIndex = 0;
     private float _waitTIme = 0.5f;
@@ -18,13 +20,18 @@ public class TaskPatrol : Node
     {
         _transform = transform;
         _waypoints = waypoints;
+        // TODO - _animator = _transform.GetComponent<Animator>();
     }
     public override NodeState Evaluate()
     {
         if (_waiting)
         {
             _waitTimer += Time.deltaTime;
-            if(_waitTimer >= _waitTIme) _waiting = false;
+            if (_waitTimer >= _waitTIme)
+            {
+                _waiting = false;
+                // TODO - _animator.SetBool("Patrol", true);
+            }
         }
         else
         {
@@ -35,6 +42,7 @@ public class TaskPatrol : Node
                 _waitTimer = 0f;
                 _waiting = true;
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
+                // TODO - _animator.SetBool("Patrol", false);
             }
             else
             {
