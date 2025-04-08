@@ -46,7 +46,7 @@ public class TaskPatrol : Node
             }
             else
             {
-                _transform.position = Vector3.MoveTowards(_transform.position, wp.position, _waitTimer * Time.deltaTime); 
+                _transform.position = Vector3.MoveTowards(_transform.position, wp.position, MonsterBT.speed * Time.deltaTime); 
                 // TODO: 위에 _waitTimer 추후에 몬스터speed로 교체
                 _transform.LookAt(wp.position);
             }

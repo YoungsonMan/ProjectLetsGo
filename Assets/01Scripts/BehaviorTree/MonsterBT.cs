@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using BehaviorTree;
 
-
-
-
 public class MonsterBT : Tree
 {
     public UnityEngine.Transform[] waypoints;
@@ -15,18 +12,20 @@ public class MonsterBT : Tree
 
     protected override Node SetupTree()
     {
-        Node root = new Selector(new List<Node>
-        {
-            new Sequence(new List<Node>
-            {
-                new CheckTargetInAttackRange(transform), new TaskAttack(transform),
-            }),
-            new Sequence(new List<Node>
-            {
-               new CheckTargetInFOVRange(transform), new TaskGoToTarget(transform), 
-            }),
-            new TaskPatrol(transform, waypoints)
-        });
+        Node root = new TaskPatrol(transform, waypoints);
+        
+       // Node root = new Selector(new List<Node>
+       // {
+       //     new Sequence(new List<Node>
+       //     {
+       //         new CheckTargetInAttackRange(transform), new TaskAttack(transform),
+       //     }),
+       //     new Sequence(new List<Node>
+       //     {
+       //        new CheckTargetInFOVRange(transform), new TaskGoToTarget(transform), 
+       //     }),
+       //     new TaskPatrol(transform, waypoints)
+       // });
         
         return root;
     }
