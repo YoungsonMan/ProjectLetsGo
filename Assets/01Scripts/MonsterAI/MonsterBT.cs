@@ -6,7 +6,7 @@ public class MonsterBT : Tree
 {
     public UnityEngine.Transform[] waypoints;
 
-    public static float speed = 2f;         // TODO 추후 몬스터 틀 만들면 거기에 스탯들 맞게
+    public static float speed = 10f;         // TODO 추후 몬스터 틀 만들면 거기에 스탯들 맞게
     public static float fovRange = 6f;
     public static float attackRange = 1f;
 

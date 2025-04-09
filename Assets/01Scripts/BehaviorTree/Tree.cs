@@ -18,7 +18,7 @@ namespace BehaviorTree
         // update에서 돌면서 evaluate
         private void Update()
         {
-            if (_root == null) _root.Evaluate();
+            if (_root != null) _root.Evaluate();
         }
 
         protected abstract Node SetupTree();

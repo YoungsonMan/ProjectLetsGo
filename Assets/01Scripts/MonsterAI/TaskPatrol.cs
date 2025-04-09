@@ -12,7 +12,7 @@ public class TaskPatrol : Node
     // TODO - private Animator _animator;
     
     private int _currentWaypointIndex = 0;
-    private float _waitTIme = 0.5f;
+    private float _waitTIme = 1f;
     private float _waitTimer = 0f;
     private bool _waiting = false;
     
@@ -24,24 +24,24 @@ public class TaskPatrol : Node
     }
     public override NodeState Evaluate()
     {
-        if (_waiting)
+        if (_waiting) // 기다림 활성화되면
         {
-            _waitTimer += Time.deltaTime;
-            if (_waitTimer >= _waitTIme)
+            _waitTimer += Time.deltaTime;   // 시간을 채움
+            if (_waitTimer >= _waitTIme)    // 지정된 시간까지 찬다면
             {
-                _waiting = false;
+                _waiting = false;       // 기다림 비활성화
                 // TODO - _animator.SetBool("Patrol", true);
             }
         }
         else
         {
-            Transform wp = _waypoints[_currentWaypointIndex];
-            if (Vector3.Distance(_transform.position, wp.position) < 0.01f)
+            Transform wp = _waypoints[_currentWaypointIndex];                   // 웨이포인트 번호대로
+            if (Vector3.Distance(_transform.position, wp.position) < 0.01f)     // 본인 위치 -> 웨이포인트 코앞 까지 도착하면
             {
-                _transform.position = wp.position;
-                _waitTimer = 0f;
-                _waiting = true;
-                _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
+                _transform.position = wp.position;                                          // 웨이포인트 위치 동기화
+                _waitTimer = 0f;                                                            // 대기 시간 초기화
+                _waiting = true;                                                            //  대기
+                _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;    // 다음 인덱스로 
                 // TODO - _animator.SetBool("Patrol", false);
             }
             else
