@@ -10,11 +10,11 @@ public class TaskAttack : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
         
-    private Animator _animator;
+  //  private Animator _animator;       TODO: 추후 애니메이션 추가 후 
 
     public TaskAttack(Transform transform)
     {
-        _animator = transform.GetComponent<Animator>();
+       // _animator = transform.GetComponent<Animator>();
     }
 
     public override NodeState Evaluate()
@@ -23,6 +23,7 @@ public class TaskAttack : Node
         if (target != _lastTarget)
         {
             _lastTarget = target;
+            Debug.Log("타겟공격");
         }
         _attackCounter += Time.deltaTime;
         if (_attackCounter >= _attackTime)
@@ -31,8 +32,8 @@ public class TaskAttack : Node
             if (enemyIsDead)
             {
                 ClearData("target");
-                _animator.SetBool("Attacking", false);
-                _animator.SetBool("Walking", true);
+               // _animator.SetBool("Attacking", false);
+               // _animator.SetBool("Walking", true);
             }
             else
             {
