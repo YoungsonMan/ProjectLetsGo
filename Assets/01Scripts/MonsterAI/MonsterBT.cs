@@ -40,6 +40,9 @@ public class MonsterBT : Tree
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, MonsterBT.fovRange);
+        Gizmos.DrawWireSphere(transform.position, MonsterBT.fovRange); // 시야 범위
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, MonsterBT.attackRange); // 공격가능 범위
+
     }
 }
