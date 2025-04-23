@@ -13,26 +13,26 @@ public class CheckTargetInAttackRange : Node
     public CheckTargetInAttackRange(Transform transform)
     {
         _transform = transform;
-        Debug.Log($"Node_공격범위체크 : Target_transform = {_transform}");
       //  _animator = _transform.GetComponent<Animator>();
     }
 
     public override NodeState Evaluate()
     {
-        object obj = GetData("target");
-        if (obj == null)
+        object obj = GetData("target");                 // 타겟접수
+        Debug.Log($"Node_공격범위체크 ON");
+        if (obj == null)                                     // 타겟이 없으면
         {
             state = NodeState.FAILURE;
             Debug.Log("Node_공격범위체크 : FAILURE");
             return state;
         }
         Transform target = (Transform)obj;
-        if (Vector3.Distance(_transform.position, target.position) <= MonsterBT.attackRange)
+        if (Vector3.Distance(_transform.position, target.position) <= MonsterBT.attackRange) //공격범위내로 들어오면 
         {
           //  _animator.SetBool("Attacking", true);
           //  _animator.SetBool("Walking", false);
             state = NodeState.SUCCESS;
-            Debug.Log("Node_공격범위체크 : SUCCESS => 타겟변경");
+            Debug.Log("Node_공격범위체크 : SUCCESS => Node_공격");
             return state;
         }
         
