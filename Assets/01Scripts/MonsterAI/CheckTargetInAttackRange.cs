@@ -13,6 +13,7 @@ public class CheckTargetInAttackRange : Node
     public CheckTargetInAttackRange(Transform transform)
     {
         _transform = transform;
+        Debug.Log($"Node_공격범위체크 : Target_transform = {_transform}");
       //  _animator = _transform.GetComponent<Animator>();
     }
 
@@ -22,6 +23,7 @@ public class CheckTargetInAttackRange : Node
         if (obj == null)
         {
             state = NodeState.FAILURE;
+            Debug.Log("Node_공격범위체크 : FAILURE");
             return state;
         }
         Transform target = (Transform)obj;
@@ -30,6 +32,7 @@ public class CheckTargetInAttackRange : Node
           //  _animator.SetBool("Attacking", true);
           //  _animator.SetBool("Walking", false);
             state = NodeState.SUCCESS;
+            Debug.Log("Node_공격범위체크 : SUCCESS => 타겟변경");
             return state;
         }
         

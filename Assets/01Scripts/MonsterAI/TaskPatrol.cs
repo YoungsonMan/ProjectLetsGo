@@ -53,6 +53,7 @@ public class TaskPatrol : Node
         }
 
         state = NodeState.RUNNING;
+        Debug.Log("몬스터Node_Patrol : SUCCESS");
         return state;
     }
 }

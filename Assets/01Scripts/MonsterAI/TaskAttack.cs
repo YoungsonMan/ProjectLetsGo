@@ -23,7 +23,7 @@ public class TaskAttack : Node
         if (target != _lastTarget)
         {
             _lastTarget = target;
-            Debug.Log("타겟공격");
+            Debug.Log($"몬스터Node_공격 : 타겟 = {target}");
         }
         _attackCounter += Time.deltaTime;
         if (_attackCounter >= _attackTime)
@@ -42,6 +42,7 @@ public class TaskAttack : Node
         }
 
         state = NodeState.RUNNING;
+        Debug.Log("몬스터Node_공격 : RUNNING");
         return state;
     }
     

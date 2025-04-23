@@ -32,8 +32,14 @@ public class MonsterBT : Tree
             }),
             new TaskPatrol(transform, waypoints)
         });
-        Debug.Log(root);
         _currentNode = root.ToString();
+        Debug.Log(_currentNode);
         return root;
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, MonsterBT.fovRange);
     }
 }
