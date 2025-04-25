@@ -65,8 +65,7 @@ public class TaskGoToTarget : Node
             Debug.Log($"몬스터Node_GTT : 타겟과의 거리 = {Vector3.Distance(target.position, _transform.position)} ");
             // 시야범위에서 벗어나면 취소시켜야함.
         }
-        
-        
+
     //    if (Vector3.Distance(_transform.position, target.position) > 0.1f) // 몹to타겟 거리 > 지정 거리(지금은.1)보다 멀면 접근
     //    {
     //        _transform.position = Vector3.MoveTowards(_transform.position, target.position, MonsterBT.speed * Time.deltaTime); // target.posiotn, 다음에 몹속도 * Time.deltaTime

@@ -10,14 +10,19 @@ public class MonsterBT : Tree
 {
     public UnityEngine.Transform[] waypoints;
     
+    public Transform spawnPoint;
+    
     [SerializeField] private string _currentNode;
 
     public static float speed = 5f;         // TODO 추후 몬스터 틀 만들면 거기에 스탯들 맞게
     public static float fovRange = 6f;
     public static float attackRange = 1f;
+    
+    
 
     protected override Node SetupTree()
     {
+        spawnPoint = waypoints[Random.Range(0, waypoints.Length)];
         // Node root = new TaskPatrol(transform, waypoints);  // 패트롤 정상작동 확인.
         
         Node root = new Selector(new List<Node>                                       // 선택
@@ -30,7 +35,9 @@ public class MonsterBT : Tree
             {
                new CheckTargetInFOVRange(transform), new TaskGoToTarget(transform),             // 시야범위체크 => 타겟추격
             }),
-            new TaskPatrol(transform, waypoints)                                                // Node 패트롤
+            //new TaskPatrol(transform, waypoints),                                                // Node 패트롤
+            new TaskRetreat(transform, spawnPoint)
+            
         });
         _currentNode = root.ToString();
         Debug.Log(_currentNode);
