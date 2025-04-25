@@ -35,7 +35,7 @@ public class MonsterBT : Tree
             {
                new CheckTargetInFOVRange(transform), new TaskGoToTarget(transform),             // 시야범위체크 => 타겟추격
             }),
-            //new TaskPatrol(transform, waypoints),                                                // Node 패트롤
+            new TaskPatrol(transform, waypoints),                                                // Node 패트롤
             new TaskRetreat(transform, spawnPoint)
             
         });
