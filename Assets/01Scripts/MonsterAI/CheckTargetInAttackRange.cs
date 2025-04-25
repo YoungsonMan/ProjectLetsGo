@@ -19,11 +19,11 @@ public class CheckTargetInAttackRange : Node
     public override NodeState Evaluate()
     {
         object obj = GetData("target");                 // 타겟접수
-        Debug.Log($"Node_공격범위체크 ON");
+        //Debug.Log($"Node_공격범위체크 ON");
         if (obj == null)                                     // 타겟이 없으면
         {
             state = NodeState.FAILURE;
-            Debug.Log("Node_공격범위체크 : FAILURE");
+            //Debug.Log("Node_공격범위체크 : FAILURE");
             return state;
         }
         Transform target = (Transform)obj;
@@ -32,7 +32,7 @@ public class CheckTargetInAttackRange : Node
           //  _animator.SetBool("Attacking", true);
           //  _animator.SetBool("Walking", false);
             state = NodeState.SUCCESS;
-            Debug.Log("Node_공격범위체크 : SUCCESS => Node_공격");
+            //Debug.Log("Node_공격범위체크 : SUCCESS => Node_공격");
             return state;
         }
         
