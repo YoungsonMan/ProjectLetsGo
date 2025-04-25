@@ -44,7 +44,8 @@ public class CheckTargetInFOVRange : Node  //Field Of View 몬스터 시야확�
             RaycastHit hit;
             if (Physics.SphereCast(_transform.position, MonsterBT.fovRange, _transform.forward, out hit, 0.1f, _targetLayerMask ))
             {
-                parent.parent.SetData("target", hit.transform);
+                parent.parent.SetData("target", hit.transform);     // 타겟 transform 딕셔너리에 저장
+                parent.parent.SetData("targetCollider", hit.collider);      // 타겟 collider 딕셔너리 저장
                 Debug.Log($"충돌포착: {hit.collider.gameObject.name}");
                 if (hit.collider.gameObject == null)   // TODO: 복귀Node를 제대로 구성하고 이거 삭제 : 이거 여기다가 해둔게 별 작동안되는게 이미 state가 바뀌어서 안됨.
                 {

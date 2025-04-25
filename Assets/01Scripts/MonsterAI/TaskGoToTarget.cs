@@ -18,14 +18,29 @@ public class TaskGoToTarget : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("target"); // 타겟접수
-
+        Transform target = (Transform)GetData("target");    // 타겟 트랜스폼 접수
+        Collider targetCollider = (Collider)GetData("targetCollider");    // 타겟 콜라이더 접수
+        
         #region 디버그로그
         Debug.Log($"몬스터Node_타겟추격 : 타겟설정 = {target} ");
         Debug.Log($"몬스터Node_타겟추격 : TargetPoisition = {target.position} ");
         #endregion
         
         // TODO: 조건문을 만들어서 레이를 벗어나면 복귀시켜야함 or FAILURE상태로. 
+        
+    //    Collider[] colliders = Physics.OverlapSphere(_transform.position, MonsterBT.fovRange,_targetLayerMask);
+    //    if (colliders.Length > 0)       //충돌체 감지 되면
+    //    {
+    //        Debug.Log($"GET DATA _ 타겟/콜라이더 저장전 = {GetData("target")}");
+    //        parent.parent.SetData("target", colliders[0].transform); // 딕셔너리에 "target"key로 '충돌체 transform' 추가
+    //        // 콜라이더가 추가된게 콜라이더를 나간다고 삭제가 안됨
+    //        Debug.Log($"target: {colliders[0].name}");
+    //        Debug.Log($"GET DATA _ target = {GetData("target")}");
+    //        // animation 추가
+    //        state = NodeState.SUCCESS;      // state 변경 => SUCCESS
+    //        return state;    
+    //    }
+        
         
         RaycastHit hit;
         Debug.Log($"타겟타겟타겟: {target}");
@@ -35,7 +50,7 @@ public class TaskGoToTarget : Node
             
             Debug.Log($"GTT Target: {target.name}");
             Debug.Log($"GTT collider {hit.collider.gameObject.name}");
-            if (hit.collider.gameObject == null)   
+            if (hit.collider == targetCollider)   
             {
                 Debug.Log($"플레이어를 놓졌다!!!");
                 state = NodeState.FAILURE;
